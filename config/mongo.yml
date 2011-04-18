@@ -1,0 +1,20 @@
+defaults: &defaults
+  host: 127.0.0.1
+  port: 27017
+
+development:
+  <<: *defaults
+  database: cloud_foundry_rails_tutorial_development
+
+test:
+  <<: *defaults
+  database: cloud_foundry_rails_tutorial_test
+
+# set these environment variables on your prod server
+production:
+  host: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['hostname'] rescue ''%>
+  port: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['port'] rescue ''%>
+  database: cloud_foundry_rails_tutorial
+  username: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['name'] rescue ''%>
+#  password: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['password'] rescue ''%>
+
