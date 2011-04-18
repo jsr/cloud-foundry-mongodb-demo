@@ -14,7 +14,7 @@ test:
 production:
   host: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['hostname'] rescue ''%>
   port: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['port'] rescue ''%>
-  database: cloud_foundry_rails_tutorial
-  username: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['name'] rescue ''%>
-#  password: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['password'] rescue ''%>
+  database: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['db'] rescue '' %>
+  username: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['username'] rescue ''%>
+  password: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['password'] rescue ''%>
 
